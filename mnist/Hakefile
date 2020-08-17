@@ -1,0 +1,20 @@
+run: dataset train test
+
+dataset: .dataset
+
+.dataset:
+	python ./dataset.py
+	touch $@
+
+train:
+	python ./train.py $(NAME) $(HID) \
+		--epoch $(EPOCH) \
+		--batch-size $(BS) \
+		--hidden-dim $(HD) \
+		--activation $(ACT) \
+		--optimizer $(OPT)
+
+test:
+	python ./test.py $(NAME) $(HID)
+
+# vim: set ft=make:

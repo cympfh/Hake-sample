@@ -1,0 +1,15 @@
+.PHONY: dataset
+
+run: dataset main
+
+main:
+	python main.py $(NAME) $(HID) --alpha $(ALPHA) --solver $(SOLVER)
+
+dataset: dataset/.dataset
+
+dataset/.dataset:
+	mkdir -p dataset
+	python dataset.py
+	touch $@
+
+# vim: set ft=make:
